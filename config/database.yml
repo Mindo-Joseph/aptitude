@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: aptitude_production
   username: aptitude
   password: <%= ENV["APTITUDE_DATABASE_PASSWORD"] %>

@@ -1,0 +1,86 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      RUBY_VERSION: 3.1.0
+      NODE_VERSION: 16
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby environment
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+
+      - name: Set up Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Configure bundler
+        run: |
+          echo "BUNDLE_JOBS: 4" >> .bundle/config
+          echo "BUNDLE_RETRY: 3" >> .bundle/config
+          echo "BUNDLE_PATH: vendor/bundle" >> .bundle/config
+
+      - name: Install Ruby gems
+        run: bundle install --path=vendor/bundle --jobs 4 --retry 3
+
+      - name: Install Yarn modules
+        run: |
+          cd frontend
+          yarn install --frozen-lockfile
+
+      - name: Run Rails tests
+        run: bundle exec rspec
+
+      - name: Lint Ruby code
+        run: bundle exec rubocop
+
+      - name: Run React tests
+        run: |
+          cd frontend
+          npm test
+
+      - name: Lint React code
+        run: |
+          cd frontend
+          npm run lint
+
+      - name: Cache gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Cache npm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Deploy to Render
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: docker://renderinc/render-cli:1
+        with:
+          args: deploy --type=sync
+        env:
+          RENDER_API_KEY: ENV['render_api_key']
+          GITHUB_TOKEN: ENV['github_token']
+
+
