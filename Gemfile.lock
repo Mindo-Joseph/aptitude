@@ -259,6 +259,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.8, >= 4.8.1)
+  figaro
   friendly_id (~> 5.4, >= 5.4.2)
   image_processing (~> 1.2)
   jbuilder
