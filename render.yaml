@@ -1,0 +1,22 @@
+databases:
+  - name: aptitude_development
+    owner: aptitude
+    encoding: UTF8
+    collation: en_US.UTF-8
+    ctype: en_US.UTF-8
+    template: template0
+    hstore: true
+    postgis: true
+services:
+  - type: web
+    name: aptitude
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: aptitude_development
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
