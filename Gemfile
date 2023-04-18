@@ -8,8 +8,10 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 gem "webpacker"
 gem "figaro"
 
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
+
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -71,6 +73,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rspec-rails', '~> 6.0.0'
+  gem "capybara"
 end
 gem "devise", "~> 4.8", ">= 4.8.1"
 gem "friendly_id", "~> 5.4", ">= 5.4.2"
