@@ -21,6 +21,10 @@ gem "puma", "~> 5.0"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -74,7 +78,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
   gem 'rspec-rails', '~> 6.0.0'
-  gem "capybara"
 end
 gem "devise", "~> 4.8", ">= 4.8.1"
 gem "friendly_id", "~> 5.4", ">= 5.4.2"
