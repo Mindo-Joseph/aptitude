@@ -1,4 +1,7 @@
+
+
 <%= render layout: "auth_layout", locals: { title: "Sign in" }  do %>
+<%= devise_mapping %>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
 
     <div class="mb-6">
