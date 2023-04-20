@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  exam: one
+  text: MyString
+  question_type: MyString
+  options: 
+  correct_option: MyString
+  points: 1
+
+two:
+  exam: two
+  text: MyString
+  question_type: MyString
+  options: 
+  correct_option: MyString
+  points: 1
