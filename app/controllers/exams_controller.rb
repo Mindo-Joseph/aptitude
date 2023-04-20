@@ -79,8 +79,6 @@ class ExamsController < ApplicationController
     @calendar.insert_event('primary', @event)
     render json: {message: "Exam scheduled"}
   end
-
-  # get permision to access google calendar
   def callback
     client = Signet::OAuth2::Client.new(client_options)
     response = client.fetch_access_token!(code: params[:code])

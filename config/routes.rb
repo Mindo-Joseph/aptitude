@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       get :redirect
       get :callback
+      post :schedule
     end
     resources :questions
     resources :attempts
