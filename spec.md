@@ -22,7 +22,7 @@ This document outlines the technical specifications for building an exam creatio
 
 ## Requirements
 - [x]  User account registration and authentication
-- Exam creation with various question types
+- [x] Exam creation with various question types
 - Payment processing for users attempting paid exams
 - Exam scheduling and access control
 - Result calculation and analytics

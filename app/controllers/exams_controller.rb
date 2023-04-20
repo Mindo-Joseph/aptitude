@@ -1,5 +1,7 @@
+require 'signet/oauth_2/client'
 class ExamsController < ApplicationController
   skip_before_action :verify_authenticity_token
+
 
   def index
     @exams = Exam.all
@@ -56,11 +58,50 @@ class ExamsController < ApplicationController
     render json: @exams
   end
 
+  def redirect
+    client = Signet::OAuth2::Client.new(client_options)
+    redirect_to client.authorization_uri.to_s, allow_other_host: true
+  end
+  # a function that is able to schedule the exam and integrate it with google calendar
+  def schedule
+    @exam = Exam.find(params[:id])
+    @user = User.find(@exam.user_id)
+    @profile = Profile.find(@user.id)
+    @calendar = Google::Apis::CalendarV3::CalendarService.new
+    @calendar.authorization = Google::Auth.get_application_default(["https://www.googleapis.com/auth/calendar"])
+    @event = Google::Apis::CalendarV3::Event.new({
+      start: Google::Apis::CalendarV3::EventDateTime.new(date_time: params[:start]),
+      end: Google::Apis::CalendarV3::EventDateTime.new(date_time: params[:end]),
+      summary: @exam.title,
+      description: @exam.description,
+      location: @profile.organization
+    })
+    @calendar.insert_event('primary', @event)
+    render json: {message: "Exam scheduled"}
+  end
 
-
+  # get permision to access google calendar
+  def callback
+    client = Signet::OAuth2::Client.new(client_options)
+    response = client.fetch_access_token!(code: params[:code])
+    session[:authorization] = response
+    redirect_to exams_path
+  end
 
   private
   def exam_params
     params.permit(:title, :description, :user_id, :public, :price, :pass_percentage, :time_limit)
+  end
+
+  def client_options
+    {
+      client_id: ENV['google_oauth2_client_id'],
+      client_secret: ENV['google_oauth2_client_secret'],
+      authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
+      token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
+      scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
+      redirect_uri: 'http://localhost:3000/'
+
+    }
   end
 end
