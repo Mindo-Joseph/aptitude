@@ -21,7 +21,7 @@ This document outlines the technical specifications for building an exam creatio
 
 
 ## Requirements
-- User account registration and authentication
+- [x]  User account registration and authentication
 - Exam creation with various question types
 - Payment processing for users attempting paid exams
 - Exam scheduling and access control
@@ -103,8 +103,8 @@ The application will follow the typical Model-View-Controller (MVC) architecture
     - POST /auth/login
     - POST /auth/logout
 - User:
-    - GET /user
-    - PATCH /user/update
+    - GET /user/<id>
+    - PATCH /user/<id>/update
 - Exam:
     - POST /exams/create
     - PATCH /exams/:id/edit
@@ -159,4 +159,4 @@ The application will follow the typical Model-View-Controller (MVC) architecture
 
 ## Bugs
 - [ ] Fix bug in google auth not changing navbar links
-- [ ] 
+- [ ]
