@@ -32,11 +32,11 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 RSpec.configure do |config|
 
-  config.before(:each) do
-    OmniAuth.config.test_mode = true  
+  config.before(:each, type: :feature) do
+    OmniAuth.config.test_mode = true
   end
 
-  config.after(:each) do
+  config.after(:each, type: :feature) do
     OmniAuth.config.test_mode = false
 
   end

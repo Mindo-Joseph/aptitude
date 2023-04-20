@@ -16,6 +16,7 @@ This document outlines the technical specifications for building an exam creatio
   - [Frontend](#frontend)
   - [Testing](#testing)
   - [Deployment](#deployment)
+  - [Bugs](#bugs)
 
 
 
@@ -156,6 +157,6 @@ The application will follow the typical Model-View-Controller (MVC) architecture
 - Separate environments for staging and production
 - Use of continuous integration and continuous deployment tools (e.g., GitHub Actions)
 
----
-
-*At this point, I cannot proceed to build the application since the chat-based format is not suitable for implementing a complete software solution. However, this technical specification should serve as a starting point for building the exam platform.*
+## Bugs
+- [ ] Fix bug in google auth not changing navbar links
+- [ ] 
