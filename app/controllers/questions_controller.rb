@@ -17,6 +17,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    
     @question = Question.create(question_params)
     if @question.save
       # return a json message of question created

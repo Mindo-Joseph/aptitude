@@ -44,6 +44,19 @@ class ExamsController < ApplicationController
     render json: {message: "Exam deleted"}
   end
 
+  def creator
+    @exam = Exam.find(params[:id])
+    @user = User.find(@exam.user_id)
+    @profile = Profile.find(@user.id)
+    render json: @profile
+  end
+
+  def public
+    @exams = Exam.where(public: true)
+    render json: @exams
+  end
+
+
 
 
   private
