@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_20_072331) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_20_092744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,32 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_072331) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "attempts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "exam_id", null: false
+    t.integer "start_time"
+    t.integer "end_time"
+    t.integer "score"
+    t.string "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id"], name: "index_attempts_on_exam_id"
+    t.index ["user_id"], name: "index_attempts_on_user_id"
+  end
+
+  create_table "exams", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.bigint "user_id", null: false
+    t.boolean "public"
+    t.float "price"
+    t.float "pass_percentage"
+    t.integer "time_limit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_exams_on_user_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -75,6 +101,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_072331) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.bigint "exam_id", null: false
+    t.string "text"
+    t.string "question_type"
+    t.json "options"
+    t.string "correct_option"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exam_id"], name: "index_questions_on_exam_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -94,5 +132,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_072331) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "attempts", "exams"
+  add_foreign_key "attempts", "users"
+  add_foreign_key "exams", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "questions", "exams"
 end

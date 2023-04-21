@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  user: one
+  public: false
+  price: 1.5
+  pass_percentage: 1.5
+  time_limit: 1
+
+two:
+  title: MyString
+  description: MyString
+  user: two
+  public: false
+  price: 1.5
+  pass_percentage: 1.5
+  time_limit: 1
