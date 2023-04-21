@@ -17,6 +17,8 @@ This document outlines the technical specifications for building an exam creatio
   - [Testing](#testing)
   - [Deployment](#deployment)
   - [Bugs](#bugs)
+  - [Frontend Inspiration](#frontend-inspiration)
+    - [Homepage](#homepage)
 
 
 
@@ -24,7 +26,7 @@ This document outlines the technical specifications for building an exam creatio
 - [x]  User account registration and authentication
 - [x] Exam creation with various question types
 - Payment processing for users attempting paid exams
-- Exam scheduling and access control
+- [x] Exam scheduling and access control
 - Result calculation and analytics
 - Examination report generation
 - Mobile and web access
@@ -35,7 +37,7 @@ This document outlines the technical specifications for building an exam creatio
 - Database: PostgreSQL
 - Payment: Stripe API
 - Authentication: Devise
-- Deployment: Heroku
+- Deployment: Render
 
 ## Architecture
 The application will follow the typical Model-View-Controller (MVC) architecture provided by Rails framework, while the frontend will be built using React components and interactions.
@@ -161,3 +163,20 @@ The application will follow the typical Model-View-Controller (MVC) architecture
 - [ ] Fix bug in google auth not changing navbar links
 - [ ] Creating an exam event does create it but now it must take in the user account email and not service account email
 - [ ]
+
+
+## Frontend Inspiration
+
+### Homepage
+  - [ ]  Navbar with logo, solutions, features, pricing, login, signup
+  - [ ]  Banner with title, description, and call to action buttons
+  - [ ]  Product demo section with an embedded youtube video
+  - [ ]  Use cases section with 3 cards each card has a title an image on the right and a learn more link
+  - [ ]  The features section with 4 cards. Each with an icon a title and a description and a learn more link
+  - [ ]  Partners section
+  - [ ]  FAQ section
+  - [ ]  Testimonials section
+  - [ ]  Footer with links to social media and contact info
+  - [ ]  Chat widget
+
+
