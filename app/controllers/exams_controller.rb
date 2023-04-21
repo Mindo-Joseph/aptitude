@@ -58,6 +58,7 @@ class ExamsController < ApplicationController
     render json: @exams
   end
 
+
   def redirect
     client = Signet::OAuth2::Client.new(client_options)
     redirect_to client.authorization_uri.to_s, allow_other_host: true

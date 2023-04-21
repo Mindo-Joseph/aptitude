@@ -153,10 +153,11 @@ The application will follow the typical Model-View-Controller (MVC) architecture
     - UI interactions and navigation
 
 ## Deployment
-- Heroku will be used for deploying the application
+- Render will be used for deploying the application
 - Separate environments for staging and production
 - Use of continuous integration and continuous deployment tools (e.g., GitHub Actions)
 
 ## Bugs
 - [ ] Fix bug in google auth not changing navbar links
+- [ ] Creating an exam event does create it but now it must take in the user account email and not service account email
 - [ ]
