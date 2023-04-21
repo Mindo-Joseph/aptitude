@@ -24,7 +24,7 @@ This document outlines the technical specifications for building an exam creatio
 - [x]  User account registration and authentication
 - [x] Exam creation with various question types
 - Payment processing for users attempting paid exams
-- Exam scheduling and access control
+- [x] Exam scheduling and access control
 - Result calculation and analytics
 - Examination report generation
 - Mobile and web access
