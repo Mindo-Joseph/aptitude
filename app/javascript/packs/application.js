@@ -1,6 +1,8 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import '../../frontend/index.js';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from '../components/App';
 
-
-console.log('Hello World from Webpacker');
+document.addEventListener('DOMContentLoaded', () => {
+    const node = document.getElementById('root');
+    ReactDOM.render (<App/>, node);
+});
