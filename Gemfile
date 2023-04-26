@@ -7,6 +7,7 @@ ruby "3.1.0"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 gem "webpacker"
 gem "figaro"
+gem 'vite_rails', '~> 3.0', '>= 3.0.14'
 
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
