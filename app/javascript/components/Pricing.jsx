@@ -1,7 +1,7 @@
 import React from "react";
 
 const PricingCard = ({ title, price, features, buttonText }) => (
-  <div className="bg-white shadow rounded-lg p-6 text-center mb-8">
+  <div className="bg-white shadow rounded-lg px-6 text-center">
     <h3 className="font-bold text-xl mb-4">{title}</h3>
     <div className="text-4xl font-bold mb-4">${price}</div>
     <ul className="space-y-2 mb-6">
@@ -54,8 +54,10 @@ const PricingComponent = () => {
 
   return (
     <div className="container mx-auto py-12">
-      <h2 className="text-3xl font-bold text-center">Pricing Plans</h2>
-      <div className="flex flex-col md:flex-row justify-between align-center">
+      <h2 className="text-3xl font-bold text-center mb-8 mt-4">
+        Pricing Plans
+      </h2>
+      <div className="flex flex-col justify-between md:flex-row">
         {pricingTiers.map((tier, index) => (
           <PricingCard key={index} {...tier} />
         ))}
